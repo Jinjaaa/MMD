@@ -1,0 +1,16 @@
+body{
+    background-color: #f5ffff;
+}
+.carousel{
+    background-image: url(assets/Bg-home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+.carousel h1 {
+    font-weight: bolder;
+    font-size: clamp(1rem, 3vw, 2.5rem);
+}
+.carousel p {
+    font-size: clamp(0.5rem, 1vw, 2.5rem);
+}
