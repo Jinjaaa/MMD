@@ -1,5 +1,6 @@
 body{
     background-color: #f5ffff;
+    font-family: Lexend;
 }
 .carousel{
     background-image: url(assets/Bg-home.png);
@@ -7,10 +8,26 @@ body{
     background-repeat: no-repeat;
     color: white;
 }
-.carousel h1 {
+.title_1{
     font-weight: bolder;
     font-size: clamp(1rem, 3vw, 2.5rem);
 }
 .carousel p {
     font-size: clamp(0.5rem, 1vw, 2.5rem);
+}
+.btn1{
+    font-size: clamp(0.5rem, 1vw, 2.5rem);
+}
+.col{
+    font-size: clamp(0.5rem, 1vw, 2.5rem);
+}
+.nav-header{
+    font-size: clamp(0.5rem, 1vw, 2.5rem);
+}
+.title_2{
+    font-weight: bolder;
+    color: #0C016B;
+}
+.transparent-bg {
+    background-color: transparent !important; /* Make the background transparent */
 }
