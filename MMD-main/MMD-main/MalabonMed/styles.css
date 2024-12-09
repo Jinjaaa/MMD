@@ -1,11 +1,20 @@
+html{
+    scroll-behavior: smooth;
+    scroll-padding: 10rem;
+    overflow-x: hidden;
+}
 body{
     background-color: #f5ffff;
     font-family: Lexend;
+    margin: 0;
+    
+
 }
 .carousel{
     background-image: url(assets/Bg-home.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     color: white;
 }
 .title_1{
@@ -14,8 +23,15 @@ body{
 }
 .title_2{
     font-weight: bolder;
-    color: rgb(37, 37, 103);
-    font-size: clamp(1rem, 3vw, 2.5rem);
+    color: rgb(37, 37, 103); 
+}
+.title_3{
+    font-weight: bolder;
+    color: rgb(247, 248, 248); 
+}
+.title_4{
+    font-weight: bolder;
+    font-size: clamp(1rem, 5vw, 2.5rem);
 }
 .carousel p {
     font-size: clamp(0.5rem, 1vw, 2.5rem);
@@ -23,9 +39,7 @@ body{
 .btn1{
     font-size: clamp(0.5rem, 1vw, 2.5rem);
 }
-.col{
-    font-size: clamp(0.5rem, 1vw, 2.5rem);
-}
+
 .nav-header{
     font-size: clamp(0.5rem, 1vw, 2.5rem);
 }
@@ -42,7 +56,56 @@ body{
 }
 .appointment{
     background-image: url(assets/app.png);
+    background-size:auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+footer{
+    background-image: url(assets/sandoval\ 1.png);
     background-size: cover;
     background-repeat: no-repeat;
+    color: white;
+}
+.poly{
+    background-image: url(assets/Polygon.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.icon-link1 {
+    color: #02f8f8; /* Change text color */
+    text-decoration: none; /* Optional: Remove underline */
+}
+.icon-link {
+    text-decoration: none; /* Optional: Remove underline */
 }
 
+.icon-link svg {
+    fill: #fffb00; /* Change icon color */
+}
+
+.icon-link1:hover {
+    color: #00fc60 ; /* Change text color on hover */
+}
+
+.icon-link-hover svg {
+    fill: #007bff; /* Change icon color on hover */
+}
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* Ensure it stays above other content */
+    background-color: #f5ffff; /* Maintain background to avoid transparency */
+}
+
+/* ABOUT CSS */
+#about{
+    background-image: url(assets/Bg-home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.25);
+    color: white;
+    background-attachment: fixed;
+}
