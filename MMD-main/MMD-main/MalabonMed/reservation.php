@@ -33,17 +33,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $civil_status = $_POST['civil_status'];
     $city = $_POST['city'];
     $barangay = $_POST['barangay'];
-    
+    $appointmentt = $_POST['appointmentt'];
+    $other_option = $_POST['other_option'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $time2 = $_POST['time2'];
 
-    echo $fn;
-    echo $ls;
-    echo $md;;
-    echo $gender;
-    echo $contact;
-    echo $email;
-    echo $civil_status;
-    echo $city;
-    echo $barangay;
+    echo $fn."\n";
+    echo $ls."\n";
+    echo $md."\n";
+    echo $gender."\n";
+    echo $contact."\n";
+    echo $email."\n";
+    echo $civil_status."\n";
+    echo $city."\n";
+    echo $barangay."\n";
+    echo $appointmentt."\n";
+    echo $other_option."\n";
+    echo $date."\n";
+    echo $time;
+    echo $time2;
 }
 
 ?>
@@ -117,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!--Form Start-->
         <div class="container-md rounded-3 border p-5 shadow-sm">
             <h1 class="py-3"><strong>Personal Information</strong></h1>
-            <form class="row g-3 needs-validation" method='post' action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" novalidate>
+            <form class="row g-3 needs-validation" method='post' action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" novalidate>
                 <div class="col-md-3 my-3">
                     <label for="validationCustom01" class="form-label">First name</label>
                     <input type="text" class="form-control text-body-secondary" name="fn" id="validationCustom01" maxlength="30" pattern="[A-Za-z\s\-]+" placeholder="John" required>
@@ -261,26 +270,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h1 class="py-3"><strong>Appointment Form</strong></h1>
 
                 <div class="col-md-7 my-3">
-                    <label for="appointment-type" name='procedure' class="form-label">Procedure for Appointment:</label>
-                    <select id="appointment-type" class="form-select" required>
+                    <label for="appointment-type" class="form-label">Procedure for Appointment:</label>
+                    <select id="appointment-type" class="form-select" name="appointmentt" required>
                         <option selected disabled value="">Select a procedure</option>
                         <option value="consultation">Consultation</option>
                         <option value="check-up">Check-up</option>
-                        <option value="test-or-exam">Test or Exam</option>
                         <option value="follow-up">Follow-up</option>
                         <option value="other">Other (please specify)</option>
                     </select>
-                    <div id="other-procedure" style="display: none;">
-                        <label for="other-procedure-text" class="form-label">Please specify the procedure:</label>
-                        <input type="text" id="other-procedure-text" class="form-control">
-                    </div>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
-                    <div class="invalid-feedback">
-                        Please select a procedure.
+                    <div id="other-procedure" style="display: none;">
+                        <label for="other-procedure-text" class="form-label">Please specify the procedure:</label>
+                        <input type="text" id="other-procedure-text" name="other_option"  pattern="[A-Za-z\s\-]+" class="form-control">
+                        <div class="invalid-feedback" id="other-procedure-feedback" style="display: none;">
+                            Please specify the procedure.
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-md-3">
                     <label for="validationCustom09" class="form-label">Preferred Appointment Date</label>
                     <input type="date" class="form-control text-body-secondary" name="date" id="validationCustom09" required>
@@ -294,17 +303,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-md-2">
                     <label for="validationCustom11" class="form-label">Preferred Time</label>
                     <div class="input-group">
-                        <select class="form-select" id="TimeSelect" required>
+                        <select class="form-select" id="TimeSelect" name="time" required>
                             <option value="" disabled selected>Time</option>
-                            <option value="1">7:00</option>
-                            <option value="2">9:00</option>
-                            <option value="3">11:00</option>
-                            <option value="4">1:00</option>
-                            <option value="5">3:00</option>
-                            <option value="6">5:00</option>
-                            <option value="7">7:00</option>
+                            <option value="9:00">9:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="1:00">1:00</option>
+                            <option value="3:00">3:00</option>
+                            <option value="5:00">5:00</option>
+                            <option value="7:00">7:00</option>
                         </select>
-                        <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="TimeSelect2" required readonly>
+                        <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="TimeSelect2" name="time2" required readonly>
 
                         <div class="valid-feedback">
                             Looks good!
@@ -406,18 +414,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const TimeInput = document.getElementById('TimeSelect2');
 
         const TimeSelectMap = {
-            "1": "AM",
-            "2": "AM",
-            "3": "AM",
-            "4": "PM",
-            "5": "PM",
-            "6": "PM",
-            "7": "PM",
+            "9:00": "AM",
+            "11:00": "AM",
+            "1:00": "PM",
+            "3:00": "PM",
+            "5:00": "PM",
+            "7:00": "PM",
         }
 
         TimeMap.addEventListener('change', () => {
             const selectedBarangay = TimeMap.value;
             TimeInput.value = TimeSelectMap[selectedBarangay] || ''; // Set ZIP code or clear if not found
+        });
+
+
+        const appointmentTypeSelect1 = document.getElementById('appointment-type');
+        const otherProcedureDiv1 = document.getElementById('other-procedure');
+        const otherProcedureInput = document.getElementById('other-procedure-text');
+        const otherProcedureFeedback = document.getElementById('other-procedure-feedback');
+
+        appointmentTypeSelect1.addEventListener('change', function() {
+            if (this.value === 'other') {
+                otherProcedureDiv.style.display = 'block';
+                otherProcedureInput.required = true; // Make the input required
+            } else {
+                otherProcedureDiv1.style.display = 'none';
+                otherProcedureInput.required = false; // Remove required if not 'other'
+                otherProcedureInput.value = ''; // Clear the input
+                otherProcedureFeedback.style.display = 'none'; // Hide feedback
+            }
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(event) {
+            if (appointmentTypeSelect.value === 'other' && otherProcedureInput.value.trim() === '') {
+                event.preventDefault(); // Prevent form submission
+                otherProcedureFeedback.style.display = 'block'; // Show feedback
+                otherProcedureInput.classList.add('is-invalid'); // Add invalid class for styling
+            } else {
+                otherProcedureFeedback.style.display = 'none'; // Hide feedback
+                otherProcedureInput.classList.remove('is-invalid'); // Remove invalid class
+            }
         });
     </script>
 </body>
