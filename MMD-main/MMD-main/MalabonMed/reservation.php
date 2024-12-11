@@ -23,26 +23,30 @@ function clean_text($string)
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $fn = $_POST['fn'];
+    $ls = $_POST['ls'];
+    $md = $_POST['mn'];
     $gender = $_POST['gender'];
+    $contact = $_POST['contact'];
+    $email = $_POST['email'];
+    $civil_status = $_POST['civil_status'];
+    $city = $_POST['city'];
+    $barangay = $_POST['barangay'];
+    
+
+    echo $fn;
+    echo $ls;
+    echo $md;;
     echo $gender;
+    echo $contact;
+    echo $email;
+    echo $civil_status;
+    echo $city;
+    echo $barangay;
 }
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,10 +117,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!--Form Start-->
         <div class="container-md rounded-3 border p-5 shadow-sm">
             <h1 class="py-3"><strong>Personal Information</strong></h1>
-            <form class="row g-3 needs-validation" method='post' action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" novalidate>
-                <div class="col-md-4 my-3">
+            <form class="row g-3 needs-validation" method='post' action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" novalidate>
+                <div class="col-md-3 my-3">
                     <label for="validationCustom01" class="form-label">First name</label>
-                    <input type="text" class="form-control text-body-secondary" name="fn" id="validationCustom01" placeholder="Setbsaian" required>
+                    <input type="text" class="form-control text-body-secondary" name="fn" id="validationCustom01" maxlength="30" pattern="[A-Za-z\s\-]+" placeholder="John" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -124,9 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         Please enter a first name.
                     </div>
                 </div>
-                <div class="col-md-4 my-3">
+                <div class="col-md-3 my-3">
                     <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control text-body-secondary" name="ls" id="validationCustom02" placeholder="You" required>
+                    <input type="text" class="form-control text-body-secondary" name="ls" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Doe" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -134,46 +138,87 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         Please enter last name.
                     </div>
                 </div>
-                <div class="col-md-4 my-3">
+                <div class="col-md-3 my-3">
+                    <label for="validationCustom02" class="form-label">Middle name</label>
+                    <input type="text" class="form-control text-body-secondary" name="mn" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Bloggs" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter middle name.
+                    </div>
+                </div>
+                <div class="col-md-3 my-3">
                     <label for="validationCustom06" class="form-label">Gender</label>
                     <select class="form-select text-body-secondary" name="gender" id="validationCustom06" required>
                         <option selected disabled value="">Please Select</option>
                         <option value="Female">Female</option>
                         <option value="Male">Male</option>
+                        <option value="Other">Other</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select one option.
                     </div>
                 </div>
-                <div class="col-md-6 my-3">
-                    <label for="validationCustom03" name='contact' class="form-label">Contact</label>
-                    <input type="number" class="form-control text-body-secondary" id="validationCustom03" placeholder="(000)-000-0000" required>
+                <div class="col-md-4 my-3">
+                    <label for="validationCustom03" class="form-label">Contact</label>
+                    <input type="tel" class="form-control text-body-secondary" id="validationCustom03" name="contact" placeholder="+0900-000-0000" pattern="\+09\d{9}$" maxlength="12" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please enter valid input.
+                        Please enter a valid phone number in the format +09123456789.
                     </div>
                 </div>
-                <div class="col-md-6 my-3">
-                    <label for="validationCustom04" name='email' class="form-label">Email</label>
-                    <input type="text" class="form-control text-body-secondary" id="validationCustom04" placeholder="bas@gmail.com" required>
+                <div class="col-md-4 my-3">
+                    <label for="validationCustomEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control text-body-secondary" id="validationCustomEmail" name="email" placeholder="example@example.com" maxlength="254" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please enter a valid email.
+                        Please enter a valid email address.
                     </div>
                 </div>
-                <div class="col-md-6 my-3">
-                    <label for="inputAddress" name='address' class="form-label">Address</label>
-                    <input type="text" class="form-control" id="validationCustom05" placeholder="1234 Main St" required>
-                    <div class="form-text" id="basic-addon4">Street Address</div>
+                <div class="col-md-4 my-3">
+                    <label for="validationCustom06" class="form-label">Civil Status</label>
+                    <select class="form-select text-body-secondary" id="Cvil_Status" name="civil_status" required>
+                        <option selected disabled value="">Please Select</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="LS"> Legally Separated</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                     <div class="invalid-feedback">
                         Please enter your address.
                     </div>
                 </div>
-                <div class="col-md-3 my-3">
+
+                <div class="col-md-6 my-3">
+                    <label for="inputAddress" name='address' class="form-label">Address</label>
+                    <input type="text" class="form-control" id="validationCustom05" placeholder="1234 Main St" required>
+                    <div class="form-text" id="basic-addon4">Street Address</div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your address.
+                    </div>
+                </div>
+                <div class="col-md-2 my-3">
+                    <label for="validationCustom02" class="form-label">City</label>
+                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" name="city" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Malabon" readonly>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter City.
+                    </div>
+                </div>
+                <div class="col-md-2 my-3">
                     <label for="validationCustom06" class="form-label">Barangay</label>
                     <select class="form-select text-body-secondary" id="barangaySelect" name="barangay" required>
                         <option selected disabled value="">Please Select</option>
@@ -204,23 +249,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
 
-                <div class="col-md-3 my-3">
+                <div class="col-md-2 my-3">
                     <label for="validationCustom07" class="form-label">Zip</label>
-                    <input type="text" class="form-control text-body-secondary" id="zipCode" required readonly>
+                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="zipCode" required readonly>
                     <div class="invalid-feedback">
                         Please provide a valid zip.
                     </div>
                 </div>
                 <hr>
+                <!--Appointment Form-->
                 <h1 class="py-3"><strong>Appointment Form</strong></h1>
 
-                <div class="col-md-6 my-3">
-                    <label for="appointment-type" name='procedure' class="form-label">Which procedure do you want to make an appointment for?</label>
+                <div class="col-md-7 my-3">
+                    <label for="appointment-type" name='procedure' class="form-label">Procedure for Appointment:</label>
                     <select id="appointment-type" class="form-select" required>
-                        <option value="">Select a procedure</option>
+                        <option selected disabled value="">Select a procedure</option>
                         <option value="consultation">Consultation</option>
                         <option value="check-up">Check-up</option>
-                        <option value="surgery">Surgery</option>
                         <option value="test-or-exam">Test or Exam</option>
                         <option value="follow-up">Follow-up</option>
                         <option value="other">Other (please specify)</option>
@@ -236,17 +281,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         Please select a procedure.
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="validationCustom09" name="datetime" class="form-label">Preferred Appointment Date and Time</label>
-                    <input type="datetime-local" class="form-control text-body-secondary" id="validationCustom09" placeholder="Select DateTime" required>
+                <div class="col-md-3">
+                    <label for="validationCustom09" class="form-label">Preferred Appointment Date</label>
+                    <input type="date" class="form-control text-body-secondary" name="date" id="validationCustom09" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please select date and time.
+                        Please select date.
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationCustom11" class="form-label">Preferred Time</label>
+                    <div class="input-group">
+                        <select class="form-select" id="TimeSelect" required>
+                            <option value="" disabled selected>Time</option>
+                            <option value="1">7:00</option>
+                            <option value="2">9:00</option>
+                            <option value="3">11:00</option>
+                            <option value="4">1:00</option>
+                            <option value="5">3:00</option>
+                            <option value="6">5:00</option>
+                            <option value="7">7:00</option>
+                        </select>
+                        <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="TimeSelect2" required readonly>
+
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please select a valid option.
+                        </div>
                     </div>
                 </div>
 
+                <hr>
                 <div class="col-12">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -298,9 +367,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 otherProcedureDiv.style.display = 'none';
             }
         });
-    </script>
 
-    <script>
         const barangaySelect = document.getElementById('barangaySelect');
         const zipCodeInput = document.getElementById('zipCode');
 
@@ -332,6 +399,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         barangaySelect.addEventListener('change', () => {
             const selectedBarangay = barangaySelect.value;
             zipCodeInput.value = barangayZipMap[selectedBarangay] || ''; // Set ZIP code or clear if not found
+        });
+
+
+        const TimeMap = document.getElementById('TimeSelect');
+        const TimeInput = document.getElementById('TimeSelect2');
+
+        const TimeSelectMap = {
+            "1": "AM",
+            "2": "AM",
+            "3": "AM",
+            "4": "PM",
+            "5": "PM",
+            "6": "PM",
+            "7": "PM",
+        }
+
+        TimeMap.addEventListener('change', () => {
+            const selectedBarangay = TimeMap.value;
+            TimeInput.value = TimeSelectMap[selectedBarangay] || ''; // Set ZIP code or clear if not found
         });
     </script>
 </body>
