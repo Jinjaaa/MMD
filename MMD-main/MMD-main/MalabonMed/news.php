@@ -193,6 +193,27 @@ include("header.html");
                                 <br><br>
                                 👨‍⚕️ Kumunsulta sa pinakamalapit na health center para sa maagang lunas.
                             </p>
+                            
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Read More</button>
+                        </div>
+                        
+                        <div class="row">
+                        <div class="col-xxl-6 my-2 ">
+                            <img src="assets/news5.jpg" class="img-fluid h-100">
+                        </div>
+
+                        <div class="col-xxl-6 my-2 ">
+                            <h2><strong>Every Blood Donor is a Hero!</strong></h2>
+                            <p><small class="text-body-secondary">Malabon City of Government • November 20, 2024 | 03:05 pm</small></p>
+
+                            <p style="text-align: justify;">
+                            Muling magsasagawa ang Malabon City Health Department katuwang ang Philippine Red Cross Malabon Chapter ng Mass Blood Donation sa Nobyembre 22, Biyernes mula 9am-4pm sa Tonsuya Super Health Center.
+                            
+                                <br><br>
+                                Hinihikayat ang lahat ng mga kwalipikadong magbigay ng dugo na makiisa sa aktibidad upang makatulong sa mga nangangailangan at makapagligtas ng buhay ng ating kapwa.
+                                
+                            </p>
+                            
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Read More</button>
                         </div>
                         <!-- Modal -->
@@ -200,15 +221,15 @@ include("header.html");
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Redirect Notice!</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        ...
+                                    You’re being redirected to another site. Are you sure you want to proceed?.
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Understood</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary">Proceed</button>
                                     </div>
                                 </div>
                             </div>
