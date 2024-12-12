@@ -13,23 +13,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <?php
-session_start();
+    session_start();
 
-if (!isset($_SESSION['feedbacks'])) {
-    $_SESSION['feedbacks'] = [];
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = htmlspecialchars($_POST['username'] ?? 'Anonymous');
-    $rating = htmlspecialchars($_POST['rating'] ?? 'No rating');
-    $feedback = htmlspecialchars($_POST['feedback'] ?? 'No feedback provided');
+    if (!isset($_SESSION['feedbacks'])) {
+        $_SESSION['feedbacks'] = [];
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = htmlspecialchars($_POST['username'] ?? 'Anonymous');
+        $rating = htmlspecialchars($_POST['rating'] ?? 'No rating');
+        $feedback = htmlspecialchars($_POST['feedback'] ?? 'No feedback provided');
 
 
-    $_SESSION['feedbacks'][] = [
-        'username' => $username,
-        'rating' => $rating,
-        'feedback' => $feedback,
-    ];
-}
+        $_SESSION['feedbacks'][] = [
+            'username' => $username,
+            'rating' => $rating,
+            'feedback' => $feedback,
+        ];
+    }
 ?>
 
 <!---just in case--->
@@ -213,24 +213,6 @@ if (isset($_POST['reset'])) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Success</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Your Feedback has been posted. Thank you!
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
