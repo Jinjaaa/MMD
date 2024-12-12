@@ -49,11 +49,11 @@ include("header.html");
     </script>
 </head>
 <body>
+    
     <div class="container-fluid">
+        
     <div class="container-md text-center">
     <h1><strong>Update On Health Programs</strong></h1>
-    
-    </div>
     </div>
 </body>
 </html>
