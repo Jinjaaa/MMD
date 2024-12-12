@@ -1,60 +1,72 @@
 <?php
 include("header.html");
-?>
 
 
-<?php
-$error = '';
-$fn = '';
-$ln = '';
-$gender = '';
-$contact = '';
-$email = '';
-$barangay = '';
-$procedure = '';
-$datetime = '';
-
-function clean_text($string)
-{
-    $string = trim($string);
-    $string = stripcslashes($string);
-    $string = htmlspecialchars($string);
-    return $string;
-}
+date_default_timezone_set('Asia/Manila');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $fn = $_POST['fn'];
-    $ls = $_POST['ls'];
     $md = $_POST['mn'];
+    $ls = $_POST['ls'];
     $gender = $_POST['gender'];
     $contact = $_POST['contact'];
     $email = $_POST['email'];
     $civil_status = $_POST['civil_status'];
+    $address = $_POST['address'];
     $city = $_POST['city'];
+    $zip = $_POST['zip'];
     $barangay = $_POST['barangay'];
+    $clinicName = $_POST['clinicName'];
+    $clinicAddress = $_POST['clinicAddress'];
     $appointmentt = $_POST['appointmentt'];
     $other_option = $_POST['other_option'];
     $date = $_POST['date'];
     $time = $_POST['time'];
     $time2 = $_POST['time2'];
+    $otp = $_POST['otp'];
 
-    echo $fn."\n";
-    echo $ls."\n";
-    echo $md."\n";
-    echo $gender."\n";
-    echo $contact."\n";
-    echo $email."\n";
-    echo $civil_status."\n";
-    echo $city."\n";
-    echo $barangay."\n";
-    echo $appointmentt."\n";
-    echo $other_option."\n";
-    echo $date."\n";
+    echo $fn . "\n";
+    echo $ls . "\n";
+    echo $md . "\n";
+    echo $gender . "\n";
+    echo $contact . "\n";
+    echo $email . "\n";
+    echo $civil_status . "\n";
+    echo $city . "\n";
+    echo $barangay . "\n";
+    echo $appointmentt . "\n";
+    echo $other_option . "\n";
+    echo $date . "\n";
     echo $time;
     echo $time2;
-}
 
+    // Start a session to store the data
+    session_start();
+    $_SESSION['otp'] = $otp;
+    $_SESSION['fn'] = $fn;
+    $_SESSION['ls'] = $ls;
+    $_SESSION['md'] = $md;
+    $_SESSION['gender'] = $gender;
+    $_SESSION['contact'] = $contact;
+    $_SESSION['email'] = $email;
+    $_SESSION['civil_status'] = $civil_status;
+    $_SESSION['address'] = $address;
+    $_SESSION['city'] = $city;
+    $_SESSION['zip'] = $zip;
+    $_SESSION['barangay'] = $barangay;
+    $_SESSION['clinicName'] = $clinicName;
+    $_SESSION['clinicAddress'] = $clinicAddress;
+    $_SESSION['appointmentt'] = $appointmentt;
+    $_SESSION['other_option'] = $other_option;
+    $_SESSION['date'] = $date;
+    $_SESSION['time'] = $time;
+    $_SESSION['time2'] = $time2;
+
+    // Redirect to the summary page
+    header("Location: summary.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -129,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form class="row g-3 needs-validation" method='post' action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" novalidate>
                 <div class="col-md-3 my-3">
                     <label for="validationCustom01" class="form-label">First name</label>
-                    <input type="text" class="form-control text-body-secondary" name="fn" id="validationCustom01" maxlength="30" pattern="[A-Za-z\s\-]+" placeholder="John" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="fn" id="validationCustom01" maxlength="30" pattern="[A-Za-z\s\-]+" placeholder="John" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -138,18 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 <div class="col-md-3 my-3">
-                    <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" class="form-control text-body-secondary" name="ls" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Doe" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div class="invalid-feedback">
-                        Please enter last name.
-                    </div>
-                </div>
-                <div class="col-md-3 my-3">
                     <label for="validationCustom02" class="form-label">Middle name</label>
-                    <input type="text" class="form-control text-body-secondary" name="mn" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Bloggs" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="mn" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Bloggs" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -158,12 +160,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 <div class="col-md-3 my-3">
+                    <label for="validationCustom02" class="form-label">Last name</label>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="ls" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Doe" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter last name.
+                    </div>
+                </div>
+
+                <div class="col-md-3 my-3">
                     <label for="validationCustom06" class="form-label">Gender</label>
                     <select class="form-select text-body-secondary" name="gender" id="validationCustom06" required>
                         <option selected disabled value="">Please Select</option>
-                        <option value="Female">Female</option>
-                        <option value="Male">Male</option>
-                        <option value="Other">Other</option>
+                        <option value="FEMALE">FEMALE</option>
+                        <option value="MALE">MALE</option>
+                        <option value="OTHER">OTHER</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select one option.
@@ -171,17 +184,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="col-md-4 my-3">
                     <label for="validationCustom03" class="form-label">Contact</label>
-                    <input type="tel" class="form-control text-body-secondary" id="validationCustom03" name="contact" placeholder="+0900-000-0000" pattern="\+09\d{9}$" maxlength="12" required>
+                    <input type="tel" class="form-control text-body-secondary" id="validationCustom03" name="contact" placeholder="0900-000-0000" pattern="^09\d{9}$" maxlength="11" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please enter a valid phone number in the format +09123456789.
+                        Please enter a valid phone number in the format 09123456789.
                     </div>
                 </div>
                 <div class="col-md-4 my-3">
                     <label for="validationCustomEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control text-body-secondary" id="validationCustomEmail" name="email" placeholder="example@example.com" maxlength="254" required>
+                    <input type="email" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" id="validationCustomEmail" name="email" placeholder="example@example.com" maxlength="254" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -193,10 +206,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="validationCustom06" class="form-label">Civil Status</label>
                     <select class="form-select text-body-secondary" id="Cvil_Status" name="civil_status" required>
                         <option selected disabled value="">Please Select</option>
-                        <option value="Single">Single</option>
-                        <option value="Married">Married</option>
-                        <option value="Divorced">Divorced</option>
-                        <option value="LS"> Legally Separated</option>
+                        <option value="SINGLE">SINGLE</option>
+                        <option value="MARRIED">MARRIED</option>
+                        <option value="DIVORCED">DIVORCED</option>
+                        <option value="LEGALLY SEPARATED"> LEGALLY SEPARATED</option>
                     </select>
                     <div class="valid-feedback">
                         Looks good!
@@ -208,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="col-md-6 my-3">
                     <label for="inputAddress" name='address' class="form-label">Address</label>
-                    <input type="text" class="form-control" id="validationCustom05" placeholder="1234 Main St" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control" name='address' id="validationCustom05" placeholder="1234 Main St" required>
                     <div class="form-text" id="basic-addon4">Street Address</div>
                     <div class="valid-feedback">
                         Looks good!
@@ -219,7 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="col-md-2 my-3">
                     <label for="validationCustom02" class="form-label">City</label>
-                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" name="city" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Malabon" readonly>
+                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" name="city" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" value="MALABON" placeholder="MALABON" readonly>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -231,27 +244,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="validationCustom06" class="form-label">Barangay</label>
                     <select class="form-select text-body-secondary" id="barangaySelect" name="barangay" required>
                         <option selected disabled value="">Please Select</option>
-                        <option value="Baritan">Baritan</option>
-                        <option value="Bayan-bayanan">Bayan-bayanan</option>
-                        <option value="Catmon">Catmon</option>
-                        <option value="Concepcion">Concepcion</option>
-                        <option value="Dampalit">Dampalit</option>
-                        <option value="Flores">Flores</option>
-                        <option value="Hulong Duhat">Hulong Duhat</option>
-                        <option value="Ibaba">Ibaba</option>
-                        <option value="Maysilo">Maysilo</option>
-                        <option value="Muzon">Muzon</option>
-                        <option value="Niugan">Niugan</option>
-                        <option value="Panghulo">Panghulo</option>
-                        <option value="San Agustin">San Agustin</option>
-                        <option value="Santulan">Santulan</option>
-                        <option value="Tañong">Tañong</option>
-                        <option value="Acacia">Acacia</option>
-                        <option value="Longos">Longos</option>
-                        <option value="Potrero">Potrero</option>
-                        <option value="Tinajeros">Tinajeros</option>
-                        <option value="Tonsuya">Tonsuya</option>
-                        <option value="Tugatog">Tugatog</option>
+                        <option value="BARITAN">BARITAN</option>
+                        <option value="BAYAN-BAYANAN">BAYAN-BAYANAN</option>
+                        <option value="CATMON">CATMON</option>
+                        <option value="CONCEPCION">CONCEPCION</option>
+                        <option value="DAMPALIT">DAMPALIT</option>
+                        <option value="FLORES">FLORES</option>
+                        <option value="HULONG DUHAT">HULONG DUHAT</option>
+                        <option value="IBABA">IBABA</option>
+                        <option value="MAYSILO">MAYSILO</option>
+                        <option value="MUZON">MUZON</option>
+                        <option value="NIUGAN">NIUGAN</option>
+                        <option value="PANGHULO">PANGHULO</option>
+                        <option value="SAN AGUSTIN">SAN AGUSTIN</option>
+                        <option value="SANTULAN">SANTULAN</option>
+                        <option value="TAÑONG">TAÑONG</option>
+                        <option value="ACACIA">ACACIA</option>
+                        <option value="LONGOS">LONGOS</option>
+                        <option value="POTRERO">POTRERO</option>
+                        <option value="TINAJEROS">TINAJEROS</option>
+                        <option value="TONSUYA">TONSUYA</option>
+                        <option value="TUGATOG">TUGATOG</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select one option.
@@ -260,11 +273,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="col-md-2 my-3">
                     <label for="validationCustom07" class="form-label">Zip</label>
-                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="zipCode" required readonly>
+                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" name="zip" id="zipCode" required readonly>
                     <div class="invalid-feedback">
                         Please provide a valid zip.
                     </div>
                 </div>
+
                 <hr>
                 <!--Appointment Form-->
                 <h1 class="py-3"><strong>Appointment Form</strong></h1>
@@ -273,17 +287,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="appointment-type" class="form-label">Procedure for Appointment:</label>
                     <select id="appointment-type" class="form-select" name="appointmentt" required>
                         <option selected disabled value="">Select a procedure</option>
-                        <option value="consultation">Consultation</option>
-                        <option value="check-up">Check-up</option>
-                        <option value="follow-up">Follow-up</option>
-                        <option value="other">Other (please specify)</option>
+                        <option value="CONSULTATION">CONSULTATION</option>
+                        <option value="CHECK-UP">CHECK-UP</option>
+                        <option value="FOLLOW-UP">FOLLOW-UP</option>
+                        <option value="OTHER">OTHER (PLEASE SPECIFY)</option>
                     </select>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div id="other-procedure" style="display: none;">
                         <label for="other-procedure-text" class="form-label">Please specify the procedure:</label>
-                        <input type="text" id="other-procedure-text" name="other_option"  pattern="[A-Za-z\s\-]+" class="form-control">
+                        <input type="text" id="other-procedure-text" oninput="this.value = this.value.toUpperCase();" name="other_option" pattern="[A-Za-z\s\-]+" class="form-control">
                         <div class="invalid-feedback" id="other-procedure-feedback" style="display: none;">
                             Please specify the procedure.
                         </div>
@@ -292,12 +306,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="col-md-3">
                     <label for="validationCustom09" class="form-label">Preferred Appointment Date</label>
-                    <input type="date" class="form-control text-body-secondary" name="date" id="validationCustom09" required>
+                    <input type="date" class="form-control text-body-secondary" name="date" id="validationCustom09" required min="<?php echo date('Y-m-d'); ?>" onchange="updateTimeOptions()">
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                     <div class="invalid-feedback">
-                        Please select date.
+                        Please select a date.
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -322,7 +336,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                 </div>
-
+                <div class="col-md-6 my-3 ">
+                    <label for="validationCustom07" class="form-label">Name of the Clinic</label>
+                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="clinicName" name="clinicName" required readonly>
+                </div>
+                <div class="col-md-6 my-3 ">
+                    <label for="validationCustom07" class="form-label">Address of Clinic</label>
+                    <input type="text" class="form-control text-body-secondary bg-secondary-subtle" id="clinicAddress" name="clinicAddress" required readonly>
+                </div>
+                <div class="col-md-4 my-3">
+                    <label for="validationCustom01" class="form-label"><strong>REFERRAL CODE: (PLEASE REMEMBER)</strong></label>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-dark bg-primary-subtle" name='otp' id="otpInput" readonly>
+                </div>
                 <hr>
                 <div class="col-12">
                     <div class="form-check">
@@ -369,7 +394,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const otherProcedureDiv = document.getElementById('other-procedure');
 
         appointmentTypeSelect.addEventListener('change', () => {
-            if (appointmentTypeSelect.value === 'other') {
+            if (appointmentTypeSelect.value === 'OTHER') {
                 otherProcedureDiv.style.display = 'block';
             } else {
                 otherProcedureDiv.style.display = 'none';
@@ -378,37 +403,130 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         const barangaySelect = document.getElementById('barangaySelect');
         const zipCodeInput = document.getElementById('zipCode');
+        const clinicNameInput = document.getElementById('clinicName');
+        const clinicAddressInput = document.getElementById('clinicAddress'); // New input for clinic address
 
-        // Mapping of barangays to their corresponding ZIP codes
-        const barangayZipMap = {
-            "Baritan": "1470",
-            "Bayan-bayanan": "1471",
-            "Catmon": "1472",
-            "Concepcion": "1473",
-            "Dampalit": "1474",
-            "Flores": "1475",
-            "Hulong Duhat": "1476",
-            "Ibaba": "1477",
-            "Maysilo": "1478",
-            "Muzon": "1479",
-            "Niugan": "1480",
-            "Panghulo": "1481",
-            "San Agustin": "1482",
-            "Santulan": "1483",
-            "Tañong": "1484",
-            "Acacia": "1485",
-            "Longos": "1486",
-            "Potrero": "1487",
-            "Tinajeros": "1488",
-            "Tonsuya": "1489",
-            "Tugatog": "1490"
+        // Mapping of barangays to their corresponding ZIP codes and clinic addresses
+        const barangayInfoMap = {
+            "BARITAN": {
+                zip: "1470",
+                name: "Baritan Health Center",
+                address: "50 Sta. Rita St. SRV Baritan 1470 Malabon, Philippines"
+            },
+            "BAYAN-BAYANAN": {
+                zip: "1471",
+                name: "Bayan Bayanan Health Center",
+                address: "90 Celia I St, Malabon, 1471 Metro Manila"
+            },
+            "CATMON": {
+                zip: "1472",
+                name: "Catmon Super Health Center",
+                address: "209 Sanciangco St, Malabon, NCR, PH."
+            },
+            "CONCEPCION": {
+                zip: "1470",
+                name: "PolyHealth Diagnostic and Laboratory Inc.",
+                address: "2F Cenel Place, 239 Gen. Luna Cor. Burgos St. Concepcion 1470 Malabon, Philippines"
+            },
+            "DAMPALIT": {
+                zip: "1470",
+                name: "Dampalit Health Center",
+                address: " Dona Juana Rodriguez-1, Barangay Dampalit, Malabon, 1470 Metro Manila"
+            },
+            "FLORES": {
+                zip: "1475",
+                name: "Flores Health Center",
+                address: "Nueva St, Malabon, Metro Manila"
+            },
+            "HULONG DUHAT": {
+                zip: "1470",
+                name: "Hulong Duhat Health Center",
+                address: "Don Basilio Bautista Blvd, Malabon, 1470 Metro Manila"
+            },
+            "IBABA": {
+                zip: "1477",
+                name: "Ibaba Health Center",
+                address: "Tiangco St, Malabon, Philippines"
+            },
+            "MAYSILO": {
+                zip: "1478",
+                name: "Maysilo Health Center",
+                address: "190 MHDP St Maysilo, Malabon, Philippines"
+            },
+            "MUZON": {
+                zip: "1479",
+                name: "Muzon Health Center ",
+                address: " 1 karunungan st., Malabon, Philippines"
+            },
+            "NIUGAN": {
+                zip: "1480",
+                name: "Niugan Health Center ",
+                address: "N. VICENCIO ST. BRGY NIUGAN, Malabon, Philippines"
+            },
+            "PANGHULO": {
+                zip: "1471",
+                name: "Panghulo Health Center",
+                address: "247 Gen. Luna St, Malabon, 1471 Metro Manila"
+            },
+            "SAN AGUSTIN": {
+                zip: "1482",
+                name: " San Agustin Health Center",
+                address: "72. S. Pascual st. San Agustin, Malabon, Philippines"
+            },
+            "SANTULAN": {
+                zip: "1483",
+                name: "Santulan Health Center",
+                address: "26-36, M Santos St, Malabon, Metro Manila"
+            },
+            "TAÑONG": {
+                zip: "1484",
+                name: "Tañong Health Center",
+                address: "MX33+Q2C, Malabon, Metro Manila"
+            },
+            "ACACIA": {
+                zip: "1474",
+                name: "Acacia Health Center",
+                address: "Ma. Clara Street Acacia 1474 Malabon, Philippines"
+            },
+            "LONGOS": {
+                zip: "1486",
+                name: "Longos Super Health Center",
+                address: "66 Hito St, Manila, Metro Manila"
+            },
+            "POTRERO": {
+                zip: "1470",
+                name: " Potrero Super Health Center",
+                address: "Durian Rd, Malabon, 1470 Metro Manila"
+            },
+            "TINAJEROS": {
+                zip: "1488",
+                name: "Tinajeros HC",
+                address: "Crispin Street, Barangay Tinajeros, Malabon City, Metro Manila, Philippines"
+            },
+            "TONSUYA": {
+                zip: "1489",
+                name: "Tonsuya Super Health Center",
+                address: "Villanueva St. Flovihomes Samatom Mendiola St. Damata"
+            },
+            "TUGATOG": {
+                zip: "1470",
+                name: "Tugatog Health Center ",
+                address: "Prosperidad St, Malabon, 1470 Metro Manila"
+            }
         };
 
         barangaySelect.addEventListener('change', () => {
             const selectedBarangay = barangaySelect.value;
-            zipCodeInput.value = barangayZipMap[selectedBarangay] || ''; // Set ZIP code or clear if not found
-        });
+            const info = barangayInfoMap[selectedBarangay] || {
+                zip: '',
+                name: '',
+                address: ''
+            }; // Get info or default to empty
 
+            zipCodeInput.value = info.zip; // Set ZIP code
+            clinicNameInput.value = info.name;
+            clinicAddressInput.value = info.address; // Set clinic address
+        });
 
         const TimeMap = document.getElementById('TimeSelect');
         const TimeInput = document.getElementById('TimeSelect2');
@@ -434,7 +552,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const otherProcedureFeedback = document.getElementById('other-procedure-feedback');
 
         appointmentTypeSelect1.addEventListener('change', function() {
-            if (this.value === 'other') {
+            if (this.value === 'OTHER') {
                 otherProcedureDiv.style.display = 'block';
                 otherProcedureInput.required = true; // Make the input required
             } else {
@@ -447,7 +565,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Form submission handler
         document.querySelector('form').addEventListener('submit', function(event) {
-            if (appointmentTypeSelect.value === 'other' && otherProcedureInput.value.trim() === '') {
+            if (appointmentTypeSelect.value === 'OTHER' && otherProcedureInput.value.trim() === '') {
                 event.preventDefault(); // Prevent form submission
                 otherProcedureFeedback.style.display = 'block'; // Show feedback
                 otherProcedureInput.classList.add('is-invalid'); // Add invalid class for styling
@@ -456,6 +574,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 otherProcedureInput.classList.remove('is-invalid'); // Remove invalid class
             }
         });
+
+        function updateTimeOptions() {
+            const dateInput = document.getElementById('validationCustom09');
+            const timeSelect = document.getElementById('TimeSelect');
+            const selectedDate = new Date(dateInput.value);
+            const today = new Date();
+
+            // Reset the time select options
+            timeSelect.selectedIndex = 0; // Reset to "Time" option
+            const timeOptions = ['9:00', '11:00', '1:00', '3:00', '5:00', '7:00'];
+
+            // Clear existing options
+            while (timeSelect.options.length > 1) {
+                timeSelect.remove(1);
+            }
+
+            // Add time options based on the selected date
+            timeOptions.forEach(time => {
+                const [hour, minute] = time.split(':');
+                const timeDate = new Date(selectedDate);
+                timeDate.setHours(hour);
+                timeDate.setMinutes(minute);
+
+                // If the selected date is today, check if the time is in the future
+                if (selectedDate.toDateString() === today.toDateString()) {
+                    if (timeDate > today) {
+                        const option = new Option(time, time);
+                        timeSelect.add(option);
+                    }
+                } else {
+                    // If the selected date is in the future, add all time options
+                    const option = new Option(time, time);
+                    timeSelect.add(option);
+                }
+            });
+        }
+        function generateRandomAlphanumeric(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                result += characters[randomIndex];
+            }
+
+            return result;
+        }
+        const randomString = generateRandomAlphanumeric(6);
+        document.getElementById('otpInput').value = randomString;
     </script>
 </body>
 

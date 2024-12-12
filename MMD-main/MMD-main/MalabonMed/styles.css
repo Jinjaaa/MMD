@@ -109,4 +109,6 @@ header {
     color: white;
     background-attachment: fixed;
 }
-
+.news_nav{
+    font-size: clamp(0.5rem, 1vw, 2.5rem);
+}

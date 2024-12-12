@@ -82,28 +82,28 @@ include("header.html");
             </p>
             <div class="container-fluid  pb-5 d-flex justify-content-center ">
                 <div class="row container-md pb-5 d-flex justify-content-center  border-bottom border-2">
-                    <div class="col-4 ">
+                    <div class="col-4">
                         <nav id="navbar-example3 " class=" h-100 flex-column align-items-stretch pe-4 pt-4   border-end">
                             <nav class="nav nav-pills flex-column " id="nav_hover" style="position: sticky; top: 20%; z-index: 1000;">
                                 <h2><strong>Malabon Health News: </strong></h2>
                                 <hr>
-                                <a class="nav-link " href="#item-1">Rehabilitated Catmon Super Health Center</a>
+                                <a class="nav-link news_nav" href="#item-1">Rehabilitated Catmon Super Health Center</a>
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3 my-1" href="#item-1-1">Project para sa Catmon Super Health Center!</a>
+                                    <a class="nav-link ms-3 my-1 news_nav" href="#item-1-1">Project para sa Catmon Super Health Center!</a>
                                 </nav>
-                                <a class="nav-link" href="#item-2">OSPITAL NG MALABON</a>
+                                <a class="nav-link news_nav" href="#item-2" >OSPITAL NG MALABON</a>
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3 my-1" href="#item-2-1">Nakatanggap ang Ospital ng Malabon (OsMal) ng mataas na rating na 93%</a>
+                                    <a class="nav-link ms-3 my-1 news_nav" href="#item-2-1">Nakatanggap ang Ospital ng Malabon (OsMal) ng mataas na rating na 93%</a>
                                 </nav>
-                                <a class="nav-link" href="#item-3">LIBRENG GAMOT</a>
+                                <a class="nav-link news_nav" href="#item-3">LIBRENG GAMOT</a>
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link ms-3 my-1" href="#item-3-1">2,076,000 na piraso ng gamot para sa 268,676 na residente ng Malabon.</a>
+                                    <a class="nav-link ms-3 my-1 news_nav" href="#item-3-1">2,076,000 na piraso ng gamot para sa 268,676 na residente ng Malabon.</a>
                                 </nav>
                             </nav>
 
                         </nav>
                     </div>
-                    <div class="col-8 pt-4">
+                    <div class="col-8 pt-4 bg-">
                         <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
                             <div id="item-1">
                                 <h1 class="text-dark"><strong>REHABILITATED CATMON SUPER HEALTH CENTER</strong></h1>
