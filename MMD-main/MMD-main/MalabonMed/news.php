@@ -121,7 +121,7 @@ include("header.html");
 
                                 </div>
                             </div>
-
+        
                             <div id="item-2" class="mt-5 ">
                                 <h1 class="text-dark"><strong>93 % RATING! Ospital ng Malabon.</strong></h1>
                                 <p class="card-text"><small class="text-body-secondary">By Malabon Ahon<br>
@@ -134,7 +134,7 @@ include("header.html");
                                 <div class="col-xl-6 " style="text-align: justify;">
 
                                 </div>
-                                <div id="item-2-1" class="pt-4 py-4 row container-md d-flex justify-content-center border-bottom border-2">
+                                <div id="item-2-1" class="pt-4 py-4 row container-md d-flex justify-content-center border-2">
                                     <div class="col" style="text-align: justify;">
                                         <p>
                                             Nakatanggap ang Ospital ng Malabon (OsMal) ng mataas na rating na 93% sa Revalidation of Integrated Hospital Operations and Management Program (IHOMP)
@@ -146,6 +146,7 @@ include("header.html");
                                             <br><br>
                                             #MalabonAhon
                                     </div>
+                                    <hr>
                                     <div id="item-3" class="mt-5 ">
                                         <h1 class="text-dark"><strong>2,706,600 na LIBRENG GAMOT</strong></h1>
                                         <p class="card-text"><small class="text-body-secondary">By Malabon Ahon<br> Published October 24, 2023 04:16 PM</small></p>
@@ -194,7 +195,25 @@ include("header.html");
                                 👨‍⚕️ Kumunsulta sa pinakamalapit na health center para sa maagang lunas.
                             </p>
                             
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Read More</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Read More</button>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Redirect Notice!</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    You’re being redirected to another site. Are you sure you want to proceed?.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <a href="https://www.facebook.com/photo?fbid=1048311270428165&set=a.558060446119919"  class="btn btn-primary">Proceed</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="row">
@@ -229,17 +248,18 @@ include("header.html");
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary">Proceed</button>
+                                        <a href="https://www.facebook.com/photo/?fbid=550841947705856&set=pcb.5508420010391847" class="btn btn-primary">Proceed</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
                     <!---copy me end-->
                 </div>
             </div>
-        </div>    
+        </div>
+        </div>  
+    </div>  
 </body>
 
 </html>

@@ -218,10 +218,11 @@ if (isset($_POST['reset'])) {
                 </div>
             </div>
 
-            <!---just in case-->
+            <!---just in 
             <form method="POST" action="">
                 <button type="submit" name="reset" class="btn btn-danger">Clear All Feedbacks</button>
             </form>
+            case-->
 
 
         </div>
