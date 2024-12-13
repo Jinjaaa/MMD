@@ -17,7 +17,8 @@ if (isset($_POST['email'])) {
     $fn = $_SESSION['fn'];
     $ls = $_SESSION['ls'];
     $subject = 'MalabonMed Email Verification';
-    $message = "Hello {$fn} {$ls}, <br> Your Referral Code is: <b>{$otp}</b>";
+    $message = "Dear {$fn} {$ls}, <br> We are excited to inform you that we have received your referral code for MalabonMed. <br> Thank you for trusting us to be part of your healthcare journey. 
+    <br> <b> Your referral code: {$otp} </b> <br> <br> Thank you for choosing MalabonMed. We look forward to serving you and ensuring your well-being.<br> <br> Best regards, MalabonMed.";
 
     $mail = new PHPMailer(true);
 
