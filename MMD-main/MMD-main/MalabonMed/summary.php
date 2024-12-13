@@ -2,6 +2,9 @@
 include("header.html");
 session_start();
 
+
+
+
 // Check if the session variables are set
 if (!isset($_SESSION['fn'])) {
     echo "No data submitted.";
@@ -153,10 +156,6 @@ $_SESSION['time2'] = $time2;
                     <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-dark" name="contact" value="<?php echo htmlspecialchars($contact); ?>" readonly>
                 </div>
                 <div class="col-md-3 my-3">
-                    <label for="validationCustom01" class="form-label">Email</label>
-                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-dark" name="email" value="<?php echo htmlspecialchars($email); ?>" readonly>
-                </div>
-                <div class="col-md-3 my-3">
                     <label for="validationCustom01" class="form-label">Civil Status</label>
                     <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-dark" name="civil_status" value="<?php echo htmlspecialchars($civil_status); ?>" readonly>
                 </div>
@@ -216,17 +215,72 @@ $_SESSION['time2'] = $time2;
 
                     <!---->
                 </form>
+
                 <hr>
                 <div class="row">
-                    <div class="col-md-6 d-md-flex justify-content-md-start my-1">
-                        <form method="post" action="cancel.php">
-                            <button type="submit" class="btn btn-danger">Cancel Appoinment</button>
-                        </form>
+                    <div class="col-md-4 my-1">
+                            <div class="card-header">
+                                <h2>Email Verification</h2>
+                            </div>
+                            <div class="card-body">
+                                <form id="emailForm">
+                                    <div class="mb-3">
+                                        <label for="validationCustom01" class="form-label">Email</label>
+                                        <input type="text" oninput="this.value = this.value.toUpperCase();"
+                                            class="form-control text-dark" name="email"
+                                            value="<?php echo htmlspecialchars($email); ?>" readonly>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Send Email Verification</button>
+                                </form>
+                                <div id="alertBox" class="mt-3" style="display: none;">
+                                    <div id="alertMessage" class="alert"></div>
+                                </div>
+                            </div>
                     </div>
-                    <div class="col-md-6 d-md-flex justify-content-md-end my-1">
-                        <form method="post" action="save.php">
-                            <button type="submit" class="btn btn-success">Save Appointment</button>
-                        </form>
+                </div>
+                <script>
+                    document.getElementById("emailForm").addEventListener("submit", function(event) {
+                        event.preventDefault(); // Prevent form submission
+
+                        const formData = new FormData(this);
+
+                        fetch("mail.php", {
+                                method: "POST",
+                                body: formData,
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                const alertBox = document.getElementById("alertBox");
+                                const alertMessage = document.getElementById("alertMessage");
+
+                                alertMessage.textContent = data.message;
+                                alertMessage.className = `alert ${data.success ? 'alert-success' : 'alert-danger'}`;
+                                alertBox.style.display = "block";
+                            })
+                            .catch(error => {
+                                const alertBox = document.getElementById("alertBox");
+                                const alertMessage = document.getElementById("alertMessage");
+
+                                alertMessage.textContent = "An error occurred. Please try again.";
+                                alertMessage.className = "alert alert-danger";
+                                alertBox.style.display = "block";
+                            });
+                    });
+                </script>
+                <div class="container-md">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 d-md-flex justify-content-md-start my-1">
+                            <form method="post" action="cancel.php">
+                                <button type="submit" class="btn btn-danger">Cancel Appoinment</button>
+                            </form>
+                        </div>
+                        <div class="col d-md-flex justify-content-md-end my-1">
+                            <form method="post" action="save.php">
+                                <button type="submit" class="btn btn-success">Save Appointment</button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
 
