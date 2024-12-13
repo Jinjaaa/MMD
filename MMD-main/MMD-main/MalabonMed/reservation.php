@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form class="row g-3 needs-validation" method='post' action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" novalidate>
                 <div class="col-md-3 my-3">
                     <label for="validationCustom01" class="form-label">First name</label>
-                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="fn" id="validationCustom01" maxlength="30" pattern="[A-Za-z\s\-]+" placeholder="John" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="fn" id="validationCustom01" maxlength="30" pattern="^(?!.$)(?!.*\d)[A-Za-z\s]+$" placeholder="John" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="col-md-3 my-3">
                     <label for="validationCustom02" class="form-label">Middle name</label>
-                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="mn" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Bloggs" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="mn" maxlength="30" pattern="^(?!.$)(?!.*\d)[A-Za-z\s]+$" id="validationCustom02" placeholder="Bloggs" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="col-md-3 my-3">
                     <label for="validationCustom02" class="form-label">Last name</label>
-                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="ls" maxlength="30" pattern="[A-Za-z\s\-]+" id="validationCustom02" placeholder="Doe" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control text-body-secondary" name="ls" maxlength="30" pattern="^(?!.$)(?!.*\d)[A-Za-z\s]+$" id="validationCustom02" placeholder="Doe" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="col-md-6 my-3">
                     <label for="inputAddress" name='address' class="form-label">Address</label>
-                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control" name='address' id="validationCustom05" placeholder="1234 Main St" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase();" class="form-control" name='address' id="validationCustom05" pattern="^(?!.$).+$" placeholder="1234 Main St" required>
                     <div class="form-text" id="basic-addon4">Street Address</div>
                     <div class="valid-feedback">
                         Looks good!
