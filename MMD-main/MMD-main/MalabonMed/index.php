@@ -14,40 +14,40 @@ include("header.html");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MalabonMed</title>
     <script type="module">
-        import Chatbox from 'https://cdn.jsdelivr.net/npm/@chaindesk/embeds@latest/dist/chatbox/index.js';
+  import Chatbox from 'https://cdn.jsdelivr.net/npm/@chaindesk/embeds@latest/dist/chatbox/index.js';
 
-        const widget = await Chatbox.initBubble({
-            agentId: 'cm4h7o6ij03o6ppjjhwv325he',
+  const widget = await Chatbox.initBubble({
+    agentId: 'cm4mur5r90a8pppjjqvlyqkwf',
+    
+    // optional 
+    // If provided will create a contact for the user and link it to the conversation
+    contact: {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'customer@email.com',
+      phoneNumber: '+33612345644',
+      userId: '42424242',
+    },
+    // optional
+    // Override initial messages
+    initialMessages: [
+      'Hello Georges how are you doing today?',
+      'How can I help you ?',
+    ],
+    // optional
+    // Provided context will be appended to the Agent system prompt
+    context: "The user you are talking to is John. Start by Greeting him by his name.",
+  });
 
-            // optional 
-            // If provided will create a contact for the user and link it to the conversation
-            contact: {
-                firstName: 'John',
-                lastName: 'Doe',
-                email: 'customer@email.com',
-                phoneNumber: '+33612345644',
-                userId: '42424242',
-            },
-            // optional
-            // Override initial messages
-            initialMessages: [
-                'Hello Georges how are you doing today?',
-                'How can I help you ?',
-            ],
-            // optional
-            // Provided context will be appended to the Agent system prompt
-            context: "The user you are talking to is John. Start by Greeting him by his name.",
-        });
+  // open the chat bubble
+  widget.open();
 
-        // open the chat bubble
-        widget.open();
+  // close the chat bubble
+  widget.close()
 
-        // close the chat bubble
-        widget.close()
-
-        // or 
-        widget.toggle()
-    </script>
+  // or 
+  widget.toggle()
+</script>
 </head>
 
 <body>
